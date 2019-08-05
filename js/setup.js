@@ -4,7 +4,6 @@
 //       ////   Lucas Ferguson   ////
 //      ////////////////////////////
 
-var gameManager = new GameManager();
 
 /**
  * @description Master Function for **START**ing the game   
@@ -34,7 +33,7 @@ THREE.DefaultLoadingManager.onLoad = function () {
     console.log('Loading Complete!');
 
     try {
-        runMainGameManager();
+        // runMainGameManager();
     } catch (error) {
         console.error("? ? " + error);
     }
@@ -92,6 +91,7 @@ const camera = new THREE.PerspectiveCamera(
     10000
 );
 camera.position.z = 50;
+
 ////    ////    ////
 ///    ////    ////
 //    ////    ////
@@ -102,8 +102,9 @@ camera.position.z = 50;
  */
 var textureLoader = new THREE.TextureLoader();
 
-var images = {
 
+var images = {
+    pointer: textureLoader.load("./assets/images/pointer.png")
 };
 // console.log(images);
 // C:\Users\Lucas\Documents\GitHub\Space-Shooter-Three-Js-Node\public\assets\images\skybox\purplenebula_bk.png
@@ -148,6 +149,68 @@ var font = fontLoader.load(
 
 
 
+let deltaTime;
+let then = 0;
+let frameCount = 0;
+/**
+ * @description Master Function for **running** the game   
+ * requestAnimationFrame(gameLoop);  
+ * update();  
+ * render();  
+ */
+function gameLoop(now) {
+
+    // setTimeout(function () {
+
+    //     requestAnimationFrame(gameLoop);
+
+    // }, 1000 / 30);
+
+    now *= 0.001; // make it seconds
+
+    deltaTime = now - then;
+    then = now;
+
+    requestAnimationFrame(gameLoop);
+    frameCount++;
+
+    if (frameCount > 10) {
+        update();
+        render();
+    }
+
+}
+////    ////    ////
+///    ////    ////
+//    ////    ////
+
+
+/**
+ * update
+ */
+function update() {
+    if (true) {
+        gameScene();
+    }
+}
+////    ////    ////
+///    ////    ////
+//    ////    ////
+
+
+/**
+ * render
+ */
+function render() {
+    renderer.render(scene, camera);
+}
+////    ////    ////
+///    ////    ////
+//    ////    ////
+
+
+
+
 // onWindowResize
 window.addEventListener('resize', onWindowResize, false);
 
@@ -158,6 +221,3 @@ function onWindowResize() {
     camera.aspect = windowWidth / windowHeight;
     camera.updateProjectionMatrix();
 }
-
-
-gameManager.gameLoop(10);
