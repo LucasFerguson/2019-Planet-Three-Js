@@ -3,7 +3,21 @@ let backgroundPlane;
 let ambientLight;
 let sun;
 
+let planets = [];
 
+class Planet {
+    constructor(pos) {
+        this.mesh = new THREE.Mesh(
+            new THREE.SphereGeometry(20, 10, 10),
+            new THREE.MeshNormalMaterial()
+        );
+
+        this.mesh.castShadow = true;
+        this.mesh.receiveShadow = true;
+        this.mesh.position.set(1000, 0, 0);
+        scene.add(this.mesh);
+    }
+}
 
 /**
  * Game controller for all user input
@@ -26,17 +40,44 @@ let world = {
  */
 function gameSetup() {
 
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    planets.push(new Planet());
+    // planets[0].mesh.position.set(100, 0, 0);
+
+    // planets.push(new Planet());
+
+    // planets[1].mesh.position.set(100, 0, 0);
+
 
     /**
      * backgroundPlane for mouse raycaster to hit
      */
     cube = new THREE.Mesh(
         new THREE.BoxGeometry(20, 20, 20),
-        new THREE.MeshNormalMaterial()
+        new THREE.MeshPhongMaterial()
     );
     cube.castShadow = true;
     cube.receiveShadow = true;
-    cube.position.set(10, 10, 0);
+    cube.position.set(500, 0, 0);
     scene.add(cube);
     ////    ////    ////
     ///    ////    ////
@@ -69,7 +110,7 @@ function gameSetup() {
     // scene.add(ambientLight); // **Disabled**
     ////    ////    ////
     ///    ////    ////
-    //    ////    ////
+    //    ////    ////e
 
 
     /**
@@ -143,9 +184,21 @@ function gameScene() {
     }
 
 
-    cube.position.set(controller.mouse.x, controller.mouse.y, 10);
+    // cube.position.set(controller.mouse.x, controller.mouse.y, 10);
 
+    if (controller.mouse.x !== 0) {
+        planets[0].mesh.position.set(controller.mouse.x, controller.mouse.y, 10);
+    }
 
+    let orbit = 100;
+
+    for (let i = 0; i < planets.length; i++) {
+        // console.log(planets[i].mesh.position);
+        let a = orbit * (i + 2);
+        let b = (a * 0.1) + (100 * 0.5);
+
+        planets[i].mesh.position.set(Math.sin(frameCount / b) * a, Math.cos(frameCount / b) * a, 10);
+    }
 }
 ////    ////    ////
 ///    ////    ////

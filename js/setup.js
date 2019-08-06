@@ -90,7 +90,17 @@ const camera = new THREE.PerspectiveCamera(
     0.01,
     10000
 );
-camera.position.z = 50;
+camera.position.z = 1000;
+
+// const camera = new THREE.OrthographicCamera(
+//     1000,
+//     1000,
+//     1000,
+//     1000,
+//     0.01,
+//     10000
+// );
+// camera.position.z = 100;
 
 ////    ////    ////
 ///    ////    ////
