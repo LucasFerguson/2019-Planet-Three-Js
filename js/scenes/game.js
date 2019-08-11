@@ -32,8 +32,8 @@ controller.setup();
 //    ////    ////
 
 let world = {
-    width: 2000,
-    height: 2000,
+    width: 3000,
+    height: 3000,
     depth: 2000
 }
 
@@ -193,12 +193,12 @@ function gameScene() {
         planets[0].mesh.position.set(controller.mouse.x, controller.mouse.y, 10);
     }
 
-    let orbit = 100;
+    let orbit = 50;
 
     for (let i = 0; i < planets.length; i++) {
         // console.log(planets[i].mesh.position);
-        let a = orbit * (i + 2);
-        let b = (a * 0.1) + (100 * 0.5);
+        let a = orbit * (i + 5);
+        let b = (a * 0.3) + (100 * 0.7);
 
         planets[i].mesh.position.set(Math.sin(frameCount / b) * a, Math.cos(frameCount / b) * a, 0);
     }
