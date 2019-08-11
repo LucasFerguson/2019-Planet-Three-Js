@@ -436,6 +436,18 @@ declare namespace THREE {
      * Abstract base class for cameras. This class should always be inherited when you build a new camera.
      */
     export class Camera extends Object3D {
+
+        /**
+         * Near Cliping plane.
+         */
+
+        near: number;
+
+        /**
+         * Far Cliping plane.
+         */
+        far: number;
+
         /**
          * This constructor sets following properties to the correct type: matrixWorldInverse, projectionMatrix and projectionMatrixInverse.
          */

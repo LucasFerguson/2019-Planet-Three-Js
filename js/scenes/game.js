@@ -7,8 +7,10 @@ let planets = [];
 
 class Planet {
     constructor(pos) {
+
+        this.radius = 6;
         this.mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(20, 10, 10),
+            new THREE.SphereGeometry(this.radius, 10, 10),
             new THREE.MeshNormalMaterial()
         );
 
@@ -18,6 +20,7 @@ class Planet {
         scene.add(this.mesh);
     }
 }
+
 
 /**
  * Game controller for all user input
@@ -90,8 +93,8 @@ function gameSetup() {
         new THREE.PlaneGeometry(world.width, world.height, 10, 1),
         new THREE.MeshPhongMaterial({
             color: 0xffffff,
-            transparent: true,
-            opacity: 0.1
+            // transparent: true,
+            opacity: 1
         })
     );
     backgroundPlane.name = "backgroundPlane";
@@ -117,7 +120,7 @@ function gameSetup() {
      * light
      */
     sun = new THREE.PointLight(0xffffff, 200, world.width, 1);
-    sun.position.set(0, 0, 10);
+    sun.position.set(0, 0, 1);
     sun.castShadow = true;
 
     //Set up shadow properties for the light
@@ -197,7 +200,7 @@ function gameScene() {
         let a = orbit * (i + 2);
         let b = (a * 0.1) + (100 * 0.5);
 
-        planets[i].mesh.position.set(Math.sin(frameCount / b) * a, Math.cos(frameCount / b) * a, 10);
+        planets[i].mesh.position.set(Math.sin(frameCount / b) * a, Math.cos(frameCount / b) * a, 0);
     }
 }
 ////    ////    ////

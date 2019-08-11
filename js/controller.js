@@ -178,6 +178,7 @@ class Controller {
 
 //// onkeydown onkeyup function ////
 onkeydown = onkeyup = function (e) {
+    // @ts-ignore
     e = e || event; // to deal with IE
     controller.keyCodes[e.keyCode] = e.type == 'keydown';
     /* insert conditional here */
