@@ -11,7 +11,7 @@ class Planet {
         this.radius = 6;
         this.mesh = new THREE.Mesh(
             new THREE.SphereGeometry(this.radius, 10, 10),
-            new THREE.MeshNormalMaterial()
+            new THREE.MeshPhongMaterial()
         );
 
         this.mesh.castShadow = true;
@@ -32,8 +32,8 @@ controller.setup();
 //    ////    ////
 
 let world = {
-    width: 3000,
-    height: 3000,
+    width: 10000,
+    height: 10000,
     depth: 2000
 }
 
@@ -119,7 +119,7 @@ function gameSetup() {
     /**
      * light
      */
-    sun = new THREE.PointLight(0xffffff, 200, world.width, 1);
+    sun = new THREE.PointLight(0xffffff, 200, world.width / 4, 1);
     sun.position.set(0, 0, 1);
     sun.castShadow = true;
 
@@ -198,7 +198,7 @@ function gameScene() {
     for (let i = 0; i < planets.length; i++) {
         // console.log(planets[i].mesh.position);
         let a = orbit * (i + 5);
-        let b = (a * 0.3) + (100 * 0.7);
+        let b = (a * 0.5) + (500 * 0.5);
 
         planets[i].mesh.position.set(Math.sin(frameCount / b) * a, Math.cos(frameCount / b) * a, 0);
     }
