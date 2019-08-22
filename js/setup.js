@@ -80,6 +80,41 @@ const scene = new THREE.Scene();
 ///    ////    ////
 //    ////    ////
 
+/**
+ * MATTER JS
+ */
+// module aliases
+var Engine = Matter.Engine,
+    Render = Matter.Render,
+    World = Matter.World,
+    Bodies = Matter.Bodies;
+
+// create an engine
+var engine = Engine.create();
+
+// create two boxes and a ground http://chandlerprall.github.io/Physijs/
+var circleA = Bodies.circle(0, 0, 80);
+var circleB = Bodies.circle(400, 200, 80);
+
+var ground = Bodies.rectangle(400, 610, 810, 60, {
+    isStatic: true
+});
+
+// add all of the bodies to the world
+World.add(engine.world, [circleA, circleB, ground]);
+
+// run the engine
+Engine.run(engine);
+
+
+
+
+////    ////    ////
+///    ////    ////
+//    ////    ////
+
+
+
 
 /**
  * This is the camera
