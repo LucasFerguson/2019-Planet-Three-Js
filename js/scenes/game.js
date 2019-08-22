@@ -5,10 +5,12 @@ let sun;
 
 let planets = [];
 
-class Planet {
-    constructor(pos) {
+let groundThreeMesh;
 
-        this.radius = 6;
+class Planet {
+    constructor(_radius) {
+
+        this.radius = _radius;
         this.mesh = new THREE.Mesh(
             new THREE.SphereGeometry(this.radius, 10, 10),
             new THREE.MeshPhongMaterial()
@@ -20,6 +22,8 @@ class Planet {
         scene.add(this.mesh);
     }
 }
+
+
 
 
 /**
@@ -43,28 +47,27 @@ let world = {
  */
 function gameSetup() {
 
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    planets.push(new Planet());
-    // planets[0].mesh.position.set(100, 0, 0);
+    planets.push(new Planet(80));
+    planets.push(new Planet(80));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
+    planets.push(new Planet(6));
 
     // planets.push(new Planet());
 
@@ -134,6 +137,35 @@ function gameSetup() {
     ////    ////    ////
     ///    ////    ////
     //    ////    ////
+
+
+
+
+
+
+    /**
+     * groundThreeMesh
+     */
+
+    let width = ground.bounds.max.x - ground.bounds.min.x;
+    let height = ground.bounds.max.y - ground.bounds.min.y;
+
+
+    groundThreeMesh = new THREE.Mesh(
+        new THREE.BoxGeometry(width, height, 20),
+        new THREE.MeshPhongMaterial()
+    );
+    groundThreeMesh.geometry.verticesNeedUpdate = true;
+    groundThreeMesh.castShadow = true;
+    groundThreeMesh.receiveShadow = true;
+    groundThreeMesh.position.set(ground.position.x, ground.position.y, 0);
+    scene.add(groundThreeMesh);
+    ////    ////    ////
+    ///    ////    ////
+    //    ////    ////
+
+    console.log(ground);
+    console.log(width, height);
 }
 ////    ////    ////
 ///    ////    ////
@@ -202,6 +234,16 @@ function gameScene() {
 
         planets[i].mesh.position.set(Math.sin(frameCount / b) * a, Math.cos(frameCount / b) * a, 0);
     }
+
+    planets[0].mesh.position.set(circleA.position.x, circleA.position.y, 0);
+    planets[1].mesh.position.set(circleB.position.x, circleB.position.y, 0);
+
+
+
+
+
+    // console.log(circleA.position, circleB.position);
+
 }
 ////    ////    ////
 ///    ////    ////

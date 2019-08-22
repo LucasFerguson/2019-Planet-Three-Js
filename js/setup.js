@@ -91,12 +91,13 @@ var Engine = Matter.Engine,
 
 // create an engine
 var engine = Engine.create();
+engine.world.gravity.y = -1;
 
 // create two boxes and a ground http://chandlerprall.github.io/Physijs/
 var circleA = Bodies.circle(0, 0, 80);
 var circleB = Bodies.circle(400, 200, 80);
 
-var ground = Bodies.rectangle(400, 610, 810, 60, {
+var ground = Bodies.rectangle(0, -500, 800, 60, {
     isStatic: true
 });
 
@@ -105,7 +106,6 @@ World.add(engine.world, [circleA, circleB, ground]);
 
 // run the engine
 Engine.run(engine);
-
 
 
 
